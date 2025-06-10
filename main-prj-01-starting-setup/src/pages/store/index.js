@@ -6,7 +6,7 @@ import requestsModule from './modules/requests/index.js';
 const store = createStore({
   modules: {
     coaches: coachesModule,
-    requests: requestsModule
+    requests: requestsModule,
   },
   state() {
     return {
