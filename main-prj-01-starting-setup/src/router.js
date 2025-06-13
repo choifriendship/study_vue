@@ -9,7 +9,7 @@ import NotFound from './pages/NotFound.vue';
 // import UserAuth from './pages/auth/UserAuth.vue';
 import store from './pages/store/index.js';
 
-const CoachDetail = () => import('./pages/coaches/CoachesList.vue');
+const CoachDetail = () => import('./pages/coaches/CoachDetail.vue');
 const CoachResistration = () => import('./pages/coaches/CoachResistration.vue');
 const ContactCoach = () => import('./pages/requests/ContactCoach.vue');
 const RequestsReceived = () => import('./pages/requests/RequestsReceived.vue');
