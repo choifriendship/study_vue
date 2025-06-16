@@ -1,21 +1,34 @@
 <template>
   <section class="container">
-    <h2>{{ userName }}</h2>
+    <h2>{{ user.name }}</h2>
+    <h3>{{ user.age }}</h3>
   </section>
 </template>
 
 <script>
-import { ref } from 'vue';
+// 반응형 데이터 reactive
+// ref: 객체를 포함해 다양한 값을 가질 수 있음
+import { reactive } from 'vue';
 
 export default {
   setup() {
-    const uName = ref('woojeongchoi');
+    // const uName = ref('woojeongchoi');
+    // const uAge = ref(31);
+    const user = reactive({
+      name: 'woojeongchoi',
+      age: 28
+    });
 
     setTimeout(function() {
-      uName.value = 'friendship'
+      // uName.value = 'friendship';
+      // uAge.value = 21;
+      // user.value.name = 'friendship';
+      // user.value.age = 21;
+      user.name = 'friendship';
+      user.age = 21;
     }, 2000)
 
-    return { userName: uName };
+    return { user: user };
   }
   // data() {
   //   return {
