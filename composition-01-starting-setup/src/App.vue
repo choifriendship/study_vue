@@ -2,6 +2,7 @@
   <section class="container">
     <h2>{{ user.name }}</h2>
     <h3>{{ user.age }}</h3>
+    <button @click="setAge">Change Age</button>
   </section>
 </template>
 
@@ -16,20 +17,24 @@ export default {
     // const uAge = ref(31);
     const user = reactive({
       name: 'woojeongchoi',
-      age: 28
+      age: 28,
     });
 
-    setTimeout(function() {
-      // uName.value = 'friendship';
-      // uAge.value = 21;
-      // user.value.name = 'friendship';
-      // user.value.age = 21;
-      user.name = 'friendship';
+    function setNewAge() {
       user.age = 21;
-    }, 2000)
+    }
 
-    return { user: user };
-  }
+    // setTimeout(function () {
+    //   // uName.value = 'friendship';
+    //   // uAge.value = 21;
+    //   // user.value.name = 'friendship';
+    //   // user.value.age = 21;
+    //   user.name = 'friendship';
+    //   user.age = 21;
+    // }, 2000);
+
+    return { user: user, setAge: setNewAge };
+  },
   // data() {
   //   return {
   //     userName: 'Maximilian',
