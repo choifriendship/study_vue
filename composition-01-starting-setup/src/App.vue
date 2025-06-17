@@ -1,13 +1,13 @@
 <template>
   <section class="container">
-    <h2>{{ userName }}</h2>
-    <h3>{{ uAge }}</h3>
+    <user-data :first-name="firstName" :last-name="lastName"></user-data>
     <button @click="setAge">Change Age</button>
     <div>
       <!-- <input type="text" placeholder="First Name" @input="setFirstName" />
       <input type="text" placeholder="Last Name" @input="setLastName" /> -->
       <input type="text" placeholder="First Name" v-model="firstName" />
-      <input type="text" placeholder="Last Name" v-model="lastName" />
+      <input type="text" placeholder="Last Name" ref="lastNameInput" />
+      <button @click="setLastName">Set Last Name</button>
     </div>
   </section>
 </template>
@@ -15,17 +15,24 @@
 <script>
 // 반응형 데이터 reactive
 // ref: 객체를 포함해 다양한 값을 가질 수 있음
-import { ref, computed, watch } from 'vue';
+import { ref, computed, watch, provide } from 'vue';
+import UserData from './components/UserData.vue';
 
 export default {
+  components: {
+    UserData
+  },
   setup() {
     const firstName = ref('');
     const lastName = ref('');
+    const lastNameInput = ref(null);
     const uAge = ref(28);
     // const user = reactive({
     //   name: 'woojeongchoi',
     //   age: 28,
     // });
+
+    provide('userAge', uAge);
 
     const uName = computed(function () {
       return firstName.value + ' ' + lastName.value;
@@ -43,6 +50,10 @@ export default {
       uAge.value = 21;
     }
 
+    function setLastName() {
+      lastName.value = lastNameInput.value.value;
+    }
+
     // function setFirstName(event) {
     //   firstName.value = event.target.value;
     // }
@@ -50,7 +61,7 @@ export default {
     //   lastName.value = event.target.value;
     // }
 
-    return { uAge, userName: uName, setAge: setNewAge, firstName, lastName };
+    return { userName: uName, setAge: setNewAge, firstName, lastName, lastNameInput, setLastName };
   },
 };
 </script>
